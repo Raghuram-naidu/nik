@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKE</title>
+</head>
+<style>
+  #cont{
+   width:100%;
+   height:700px;
+   margin:auto;
+   border:1px;
+   } 
+  #box1{
+   width:20%;
+   height:70%;
+   float:left;
+   margin:7% 2%;
+   border:1px; 
+   position :fixed
+  }
+  #box1>input{
+  float:left;
+  width:70%;
+  height:2%;
+  margin:5% 5%;
+  padding: 4%;
+  }
+  #box1>button{
+   float:left;   
+   width:50%;
+  height:5%;
+  margin:5% 5%;
+  color:chartreuse;
+  border: 1px solid black;
+  font-weight: bolder;
+  }
+  #box2{
+   width:75%;
+   height:98%;
+   border:1px ;
+   display:flex;
+  
+   flex-wrap: wrap;
+    margin-left: 25%;
+
+  }
+  #box2>div{
+     flex-basis: 30%;
+     margin: 1.5%;
+      
+     flex-direction: row;
+     border: 1px ;
+  }
+     .bx {
+            padding: 5%;
+            border: 1px solid black;
+        }
+
+    .bx>img {
+            width: 18vw;
+            height: 18vw;
+            margin-left:.5vw
+        }
+
+    .upd {
+            float: right;
+        }
+        
+</style>
+<body>
+  <div id=cont>
+      <div id=box1>
+        <input type="text" id="name" placeholder="Name">
+        <input type="Number" id="price" placeholder="Price">
+        <input type="text" id="description" placeholder="Description">
+        <input type="Number" id="days" placeholder="Estimated Delivery">
+        <input type="url" id="image" placeholder="Image(Optional)">
+        <button type="submit" id="add">ADD PRODUCT</button>
+      </div>
+      <div id=box2></div>
+  </div>
+
+</body>
+</html>
+<script>
+    var btn=document.getElementById('add')
+    btn.addEventListener('click',kgf)
+    var count=0
+    function kgf(){
+    count++
+    
+    var name=document.getElementById('name').value
+    var price = document.getElementById('price').value
+    var text=document.getElementById('description').value
+    var number=document.getElementById('days').value
+    var img=document.getElementById('image').value
+   
+    var pd=document.createElement('div')
+    var div=document.getElementById('box2')
+    pd.innerHTML=`<div id="${count}" class="bx">
+       <h3>${name}</h3>
+       <h3 id="price${count}">${price} RS.</h3>
+       <h3>${text}</h3>
+       <h3>${number}days</h3>
+       <img src=${img}>
+       <button id="remove${count}" class="rm" onclick="this.parentNode.parentNode.remove(this.parentNode.parentNode)">Remove</button>
+      <button id="update${count}" class="upd" onclick="date(${count})">Update</button>
+      </div>`
+      div.appendChild(pd)
+    }
+     function date(count) {
+        //console.log(this.parentElement);
+        // var main = document.getElementById("count");
+        // console.log(main, count);
+        var str = "price" + count;
+        //console.log(str);
+
+        var new_price = prompt("Enter new_price");
+        var price = document.getElementById(str);
+
+        price.innerHTML = `<h3 id="price${count}">${new_price}</h3>`;
+      }    
+    
+
+</script>
